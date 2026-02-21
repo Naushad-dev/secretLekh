@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Private Notes App (SecretLekh)
 
-## Getting Started
+A secure, private note-sharing application built with Next.js 15, Firebase, and Gemini AI.
 
-First, run the development server:
+## Setup Instructions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  **Clone the repo**
+    ```bash
+    git clone https://github.com/your-username/private-notes-app.git
+    cd private-notes-app
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3.  **Configure Environment Variables**
+    Copy `.env.local.example` to `.env.local` and fill in your Firebase and Gemini API credentials.
+    ```bash
+    cp .env.local.example .env.local
+    ```
+    You need to provide:
+    - Firebase Client SDK keys (from Project Settings)
+    - Firebase Admin SDK keys (Service Account JSON)
+    - Google Gemini API Key (from AI Studio)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    **Note:** For Firebase Admin, you need to stringify your private key properly if putting it in a single line env var, or use the `.env.local` format carefully.
 
-## Learn More
+4.  **Firebase Setup**
+    - Create a Firebase project.
+    - Enable **Authentication** (Email/Password + Google).
+    - Enable **Firestore Database**.
+    - Initialize Firestore in **Native Mode**.
+    - Set Firestore rules to allow read/write for now (secure them later).
 
-To learn more about Next.js, take a look at the following resources:
+5.  **Run Development Server**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Secure Note Creation**: Create notes protected by a unique, auto-generated password.
+- **Auto-Expiry**: Set notes to expire after 1 hour, 24 hours, or 7 days.
+- **AI Summary**: Summarize long notes instantly using Google Gemini AI.
+- **Dashboard**: Helper dashboard to manage your created notes.
+- **Link Sharing**: Share a unique URL and password with anyone.
+- **Responsive Design**: Beautiful, dark-themed UI built with Tailwind CSS.
 
-## Deploy on Vercel
+## Future Improvements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- End-to-end encryption of note content before storing
+- Burn after reading — note deletes itself after first view
+- Rate limiting on unlock attempts to prevent brute force
+- Rich text editor support
+- Note analytics dashboard for creators (partially implemented)
+- Email notifications when note is viewed
+- Two-factor password protection for sensitive notes
