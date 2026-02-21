@@ -6,7 +6,7 @@ A secure, private note-sharing application built with Next.js 15, Firebase, and 
 
 1.  **Clone the repo**
     ```bash
-    git clone https://github.com/your-username/private-notes-app.git
+    git clone https://github.com/Naushad-dev/private-notes-app.git
     cd private-notes-app
     ```
 
